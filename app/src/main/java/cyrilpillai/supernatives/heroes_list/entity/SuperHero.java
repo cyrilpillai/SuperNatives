@@ -2,21 +2,25 @@ package cyrilpillai.supernatives.heroes_list.entity;
 
 import com.google.gson.annotations.SerializedName;
 
+import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
+
 /**
  * Created by cyrilpillai on 11-11-2017.
  */
-
+@Entity
 public class SuperHero {
+    @Id(assignable = true)
     @SerializedName("id")
-    private int id;
+    private long id;
     @SerializedName("character_name")
     private String name;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

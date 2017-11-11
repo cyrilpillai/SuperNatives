@@ -11,6 +11,8 @@ import cyrilpillai.supernatives.heroes_list.entity.SuperHero;
 import cyrilpillai.supernatives.utils.Constants;
 import cyrilpillai.supernatives.utils.network.ApiService;
 import cyrilpillai.supernatives.utils.callbacks.DataCallback;
+import io.objectbox.Box;
+import io.objectbox.BoxStore;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -22,20 +24,21 @@ import retrofit2.Response;
 public class HeroesListModel implements HeroesListContract.Model {
 
     private ApiService apiService;
-
-    private List<SuperHero> superHeroesCache;
+    private Box<SuperHero> superHeroBox;
 
     @Inject
-    public HeroesListModel(ApiService apiService) {
+    public HeroesListModel(ApiService apiService, BoxStore boxStore) {
         this.apiService = apiService;
+        superHeroBox = boxStore.boxFor(SuperHero.class);
     }
 
 
     @Override
     public void fetchSuperHeroes(DataCallback<List<SuperHero>, Throwable> dataCallback) {
-        if (superHeroesCache != null) {
-            dataCallback.onSuccess(superHeroesCache);
-            Log.d("Heroes", "fetchSuperHeroes: from In-memory Cache");
+        List<SuperHero> superHeroes = superHeroBox.getAll();
+        if (superHeroes != null && superHeroes.size() > 0) {
+            Log.d("Heroes", "fetchSuperHeroes: from Local Cache");
+            dataCallback.onSuccess(superHeroes);
         } else {
             Log.d("Heroes", "fetchSuperHeroes: from Network");
             Call<List<SuperHero>> call = apiService.getSuperHeroes(Constants.SUPERHEROES_LIST_URL);
@@ -47,8 +50,8 @@ public class HeroesListModel implements HeroesListContract.Model {
                     List<SuperHero> superHeroes = response.body();
                     if (response.isSuccessful() &&
                             superHeroes != null) {
-                        superHeroesCache = superHeroes;
-                        dataCallback.onSuccess(superHeroesCache);
+                        superHeroBox.put(superHeroes);
+                        dataCallback.onSuccess(superHeroes);
                     } else {
                         dataCallback.onError(new Throwable("Error"));
 
@@ -67,6 +70,7 @@ public class HeroesListModel implements HeroesListContract.Model {
 
     @Override
     public SuperHero getHeroAtPosition(int position) {
-        return superHeroesCache != null ? superHeroesCache.get(position) : null;
+        List<SuperHero> superHeroes = superHeroBox.getAll();
+        return superHeroes != null ? superHeroes.get(position) : null;
     }
 }

@@ -3,6 +3,7 @@ package cyrilpillai.supernatives.heroes_list;
 import cyrilpillai.supernatives.utils.network.ApiService;
 import dagger.Module;
 import dagger.Provides;
+import io.objectbox.BoxStore;
 
 /**
  * Created by cyrilpillai on 11-11-2017.
@@ -12,8 +13,8 @@ import dagger.Provides;
 public class HeroesListModule {
 
     @Provides
-    HeroesListContract.Model providesHeroesListModel(ApiService apiService) {
-        return new HeroesListModel(apiService);
+    HeroesListContract.Model providesHeroesListModel(ApiService apiService, BoxStore boxStore) {
+        return new HeroesListModel(apiService, boxStore);
     }
 
     @Provides

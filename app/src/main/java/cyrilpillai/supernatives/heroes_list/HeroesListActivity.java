@@ -82,7 +82,7 @@ public class HeroesListActivity extends AppCompatActivity implements HeroesListC
     }
 
     @Override
-    public void showDetailsView(int id) {
+    public void showDetailsView(long id) {
         Toast.makeText(context, id + " clicked", Toast.LENGTH_SHORT).show();
     }
 }

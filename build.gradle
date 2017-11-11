@@ -11,39 +11,45 @@ buildscript {
             'retrofit'     : '2.3.0',
             'dagger'       : '2.12',
             'stetho'       : '1.5.0',
+            'objectBox'    : '1.2.1',
             'sourceCompat' : JavaVersion.VERSION_1_8,
             'targetCompat' : JavaVersion.VERSION_1_8
     ]
 
     ext.deps = [
-            android : [
+            android   : [
                     'gradlePlugin': "com.android.tools.build:gradle:${versions.androidPlugin}",
             ],
-            support : [
+            support   : [
                     'appCompat'   : "com.android.support:appcompat-v7:${versions.buildTools}",
                     'annotations' : "com.android.support:support-annotations:${versions.buildTools}",
                     'recyclerView': "com.android.support:recyclerview-v7:${versions.buildTools}",
             ],
-            square  : [
+            square    : [
                     'retrofit'     : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
                     'gsonConverter': "com.squareup.retrofit2:converter-gson:${versions.retrofit}",
                     'okhttp'       : "com.squareup.okhttp3:okhttp:3.9.0",
                     'picasso'      : "com.squareup.picasso:picasso:2.5.2"
             ],
-            google  : [
+            google    : [
                     'dagger'                : "com.google.dagger:dagger:${versions.dagger}",
                     'daggerAndroidSupport'  : "com.google.dagger:dagger-android-support:${versions.dagger}",
                     'daggerProcessor'       : "com.google.dagger:dagger-compiler:${versions.dagger}",
                     'daggerAndroidProcessor': "com.google.dagger:dagger-android-processor:${versions.dagger}"
             ],
-            facebook: [
+            facebook  : [
                     'stetho'            : "com.facebook.stetho:stetho:${versions.stetho}",
                     'networkInterceptor': "com.facebook.stetho:stetho-okhttp3:${versions.stetho}"
             ],
-            others  : [
+            greenrobot: [
+                    'objectBoxPlugin' : "io.objectbox:objectbox-gradle-plugin:${versions.objectBox}",
+                    'objectBoxDebug'  : "io.objectbox:objectbox-android-objectbrowser:${versions.objectBox}",
+                    'objectBoxRelease': "io.objectbox:objectbox-android:${versions.objectBox}",
+            ],
+            others    : [
                     'fastScroll': "com.futuremind.recyclerfastscroll:fastscroll:0.2.5",
             ],
-            test    : [
+            test      : [
                     'junit'       : "junit:junit:4.12",
                     'testRunner'  : "com.android.support.test:runner:1.0.1",
                     'espressoCore': "com.android.support.test.espresso:espresso-core:3.0.1"
@@ -55,9 +61,11 @@ buildscript {
         google()
         jcenter()
         mavenCentral()
+        maven { url "http://objectbox.net/beta-repo/" }
     }
     dependencies {
         classpath deps.android.gradlePlugin
+        classpath deps.greenrobot.objectBoxPlugin
     }
 }
 
@@ -67,6 +75,7 @@ allprojects {
         jcenter()
         mavenCentral()
         maven { url 'https://jitpack.io' }
+        maven { url "http://objectbox.net/beta-repo/" }
     }
 }
 

@@ -43,6 +43,8 @@ dependencies {
     implementation deps.facebook.stetho
     implementation deps.facebook.networkInterceptor
     implementation deps.others.fastScroll
+    debugImplementation deps.greenrobot.objectBoxDebug
+    releaseImplementation deps.greenrobot.objectBoxRelease
 
     annotationProcessor deps.google.daggerProcessor
     annotationProcessor deps.google.daggerAndroidProcessor
@@ -51,3 +53,5 @@ dependencies {
     androidTestImplementation deps.test.testRunner
     androidTestImplementation deps.test.espressoCore
 }
+
+apply plugin: 'io.objectbox'

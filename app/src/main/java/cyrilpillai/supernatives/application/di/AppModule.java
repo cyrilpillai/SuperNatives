@@ -10,11 +10,15 @@ import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
 
+import cyrilpillai.supernatives.BuildConfig;
+import cyrilpillai.supernatives.heroes_list.entity.MyObjectBox;
 import cyrilpillai.supernatives.utils.network.ApiService;
 import cyrilpillai.supernatives.utils.network.ServiceInterceptor;
 import cyrilpillai.supernatives.utils.Constants;
 import dagger.Module;
 import dagger.Provides;
+import io.objectbox.BoxStore;
+import io.objectbox.android.AndroidObjectBrowser;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -26,7 +30,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class AppModule {
-
 
     @Provides
     @Singleton
@@ -42,8 +45,8 @@ public class AppModule {
 
     @Provides
     @Singleton
-    public Retrofit providesRetrofit(GsonConverterFactory gsonConverterFactory,
-                                     OkHttpClient okHttpClient) {
+    Retrofit providesRetrofit(GsonConverterFactory gsonConverterFactory,
+                              OkHttpClient okHttpClient) {
         return new Retrofit.Builder().baseUrl(Constants.BASE_URL)
                 .addConverterFactory(gsonConverterFactory)
                 .client(okHttpClient)
@@ -88,5 +91,15 @@ public class AppModule {
     @Singleton
     ServiceInterceptor providesServiceInterceptor() {
         return new ServiceInterceptor();
+    }
+
+    @Provides
+    @Singleton
+    BoxStore providesBoxStore(Context context) {
+        BoxStore boxStore = MyObjectBox.builder().androidContext(context).build();
+        if (BuildConfig.DEBUG) {
+            new AndroidObjectBrowser(boxStore).start(context);
+        }
+        return boxStore;
     }
 }
