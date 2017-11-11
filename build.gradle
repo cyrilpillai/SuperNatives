@@ -40,6 +40,9 @@ buildscript {
                     'stetho'            : "com.facebook.stetho:stetho:${versions.stetho}",
                     'networkInterceptor': "com.facebook.stetho:stetho-okhttp3:${versions.stetho}"
             ],
+            others  : [
+                    'fastScroll': "com.futuremind.recyclerfastscroll:fastscroll:0.2.5",
+            ],
             test    : [
                     'junit'       : "junit:junit:4.12",
                     'testRunner'  : "com.android.support.test:runner:1.0.1",
@@ -63,6 +66,7 @@ allprojects {
         google()
         jcenter()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
 }
 

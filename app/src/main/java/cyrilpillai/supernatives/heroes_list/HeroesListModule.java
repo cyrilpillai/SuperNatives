@@ -22,7 +22,13 @@ public class HeroesListModule {
     }
 
     @Provides
-    HeroesListContract.Presenter providesHeroesListPresenter(HeroesListContract.View view, HeroesListContract.Model model) {
+    HeroesListContract.Presenter providesHeroesListPresenter(HeroesListContract.View view,
+                                                             HeroesListContract.Model model) {
         return new HeroesListPresenter(view, model);
+    }
+
+    @Provides
+    HeroesAdapter provideHeroesListAdapter() {
+        return new HeroesAdapter();
     }
 }

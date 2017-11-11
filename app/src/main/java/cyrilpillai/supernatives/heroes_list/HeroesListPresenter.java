@@ -5,7 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import cyrilpillai.supernatives.heroes_list.entity.SuperHero;
-import cyrilpillai.supernatives.utils.callbacks.NetworkCallback;
+import cyrilpillai.supernatives.utils.callbacks.DataCallback;
 
 /**
  * Created by cyrilpillai on 11-11-2017.
@@ -25,16 +25,21 @@ public class HeroesListPresenter implements HeroesListContract.Presenter {
     @Override
     public void getSuperHeroes() {
         view.loadingView(true);
-        model.fetchSuperHeroes(new NetworkCallback<List<SuperHero>, Throwable>() {
+        view.superHeroesView(false);
+        view.errorView(false);
+        model.fetchSuperHeroes(new DataCallback<List<SuperHero>, Throwable>() {
             @Override
             public void onSuccess(List<SuperHero> response) {
-                view.showSuperHeroes(response);
+                view.setSuperHeroes(response);
+                view.superHeroesView(true);
+                view.errorView(false);
                 view.loadingView(false);
             }
 
             @Override
             public void onError(Throwable error) {
-                view.errorView(error.getLocalizedMessage());
+                view.errorView(true);
+                view.superHeroesView(false);
                 view.loadingView(false);
             }
         });
@@ -42,6 +47,9 @@ public class HeroesListPresenter implements HeroesListContract.Presenter {
 
     @Override
     public void onSuperHeroClicked(int position) {
-
+        SuperHero superHero = model.getHeroAtPosition(position);
+        if (superHero != null) {
+            view.showDetailsView(superHero.getId());
+        }
     }
 }

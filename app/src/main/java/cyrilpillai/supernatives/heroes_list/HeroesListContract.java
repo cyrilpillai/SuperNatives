@@ -3,7 +3,7 @@ package cyrilpillai.supernatives.heroes_list;
 import java.util.List;
 
 import cyrilpillai.supernatives.heroes_list.entity.SuperHero;
-import cyrilpillai.supernatives.utils.callbacks.NetworkCallback;
+import cyrilpillai.supernatives.utils.callbacks.DataCallback;
 
 /**
  * Created by cyrilpillai on 11-11-2017.
@@ -11,15 +11,21 @@ import cyrilpillai.supernatives.utils.callbacks.NetworkCallback;
 
 public class HeroesListContract {
     interface Model {
-        void fetchSuperHeroes(NetworkCallback<List<SuperHero>, Throwable> networkCallback);
+        void fetchSuperHeroes(DataCallback<List<SuperHero>, Throwable> dataCallback);
+
+        SuperHero getHeroAtPosition(int position);
     }
 
     interface View {
-        void showSuperHeroes(List<SuperHero> superHeroes);
+        void setSuperHeroes(List<SuperHero> superHeroes);
+
+        void superHeroesView(boolean show);
 
         void loadingView(boolean isLoading);
 
-        void errorView(String error);
+        void errorView(boolean show);
+
+        void showDetailsView(int id);
     }
 
     interface Presenter {

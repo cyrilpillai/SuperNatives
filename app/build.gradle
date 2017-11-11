@@ -42,6 +42,7 @@ dependencies {
     implementation deps.google.daggerAndroidSupport
     implementation deps.facebook.stetho
     implementation deps.facebook.networkInterceptor
+    implementation deps.others.fastScroll
 
     annotationProcessor deps.google.daggerProcessor
     annotationProcessor deps.google.daggerAndroidProcessor

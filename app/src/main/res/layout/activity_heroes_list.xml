@@ -3,18 +3,68 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context="cyrilpillai.supernatives.heroes_list.HeroesListActivity">
 
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btnDummy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!" />
 
-    </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_heroes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listItem="@layout/rv_hero_item" />
+
+        <com.futuremind.recyclerviewfastscroll.FastScroller
+            android:id="@+id/fast_scroll"
+            style="@style/StyledFastScroll"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical" />
+
+        <ProgressBar
+            android:id="@+id/pb_loading"
+            style="@style/Base.Widget.AppCompat.ProgressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminate="true" />
+
+        <LinearLayout
+            android:id="@+id/ll_error_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/ic_sad_wolverine" />
+
+            <android.support.v7.widget.AppCompatTextView
+                style="@style/Base.TextAppearance.AppCompat.Light.Widget.PopupMenu.Small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="@string/error_no_friends" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_try_again"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/try_again" />
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </layout>

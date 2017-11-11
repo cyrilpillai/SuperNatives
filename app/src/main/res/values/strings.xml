@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Super Natives</string>
+    <string name="error_no_friends">Sorry!\nNone of my friends were able to get here.</string>
+    <string name="try_again">Try Again</string>
 </resources>

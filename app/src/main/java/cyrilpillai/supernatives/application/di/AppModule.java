@@ -57,8 +57,8 @@ public class AppModule {
                 .cache(cache)
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS)
-                .readTimeout(30, TimeUnit.SECONDS)
-                .addInterceptor(serviceInterceptor);
+                .readTimeout(30, TimeUnit.SECONDS);
+        //.addInterceptor(serviceInterceptor);
 
         client.addNetworkInterceptor(new StethoInterceptor());
 
