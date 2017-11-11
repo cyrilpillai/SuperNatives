@@ -1,0 +1,52 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
+    defaultConfig {
+        applicationId "cyrilpillai.supernatives"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.compileSdk
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+
+        buildConfigField("String", "SUPERHERO_API_KEY", SUPERHERO_API_KEY)
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility versions.sourceCompat
+        targetCompatibility versions.targetCompat
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation deps.support.appCompat
+    implementation deps.support.annotations
+    implementation deps.support.recyclerView
+    implementation deps.square.retrofit
+    implementation deps.square.gsonConverter
+    implementation deps.square.okhttp
+    implementation deps.square.picasso
+    implementation deps.google.dagger
+    implementation deps.google.daggerAndroidSupport
+    implementation deps.facebook.stetho
+    implementation deps.facebook.networkInterceptor
+
+    annotationProcessor deps.google.daggerProcessor
+    annotationProcessor deps.google.daggerAndroidProcessor
+
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.testRunner
+    androidTestImplementation deps.test.espressoCore
+}
