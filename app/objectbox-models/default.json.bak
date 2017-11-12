@@ -18,25 +18,9 @@
         }
       ],
       "relations": []
-    },
-    {
-      "id": "2:4345665301555574412",
-      "lastPropertyId": "2:4370858167749743252",
-      "name": "SuperHeroDetails",
-      "properties": [
-        {
-          "id": "1:4896648397478113434",
-          "name": "id"
-        },
-        {
-          "id": "2:4370858167749743252",
-          "name": "name"
-        }
-      ],
-      "relations": []
     }
   ],
-  "lastEntityId": "2:4345665301555574412",
+  "lastEntityId": "1:7556352519671323523",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",

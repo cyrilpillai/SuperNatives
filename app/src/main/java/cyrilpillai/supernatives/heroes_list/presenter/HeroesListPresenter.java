@@ -1,9 +1,10 @@
-package cyrilpillai.supernatives.heroes_list;
+package cyrilpillai.supernatives.heroes_list.presenter;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
+import cyrilpillai.supernatives.heroes_list.contract.HeroesListContract;
 import cyrilpillai.supernatives.heroes_list.entity.SuperHero;
 import cyrilpillai.supernatives.utils.callbacks.DataCallback;
 
@@ -47,7 +48,7 @@ public class HeroesListPresenter implements HeroesListContract.Presenter {
 
     @Override
     public void onSuperHeroClicked(int position) {
-        SuperHero superHero = model.getHeroAtPosition(position);
+        SuperHero superHero = model.getSuperHeroAtPosition(position);
         if (superHero != null) {
             view.showDetailsView(superHero.getId());
         }

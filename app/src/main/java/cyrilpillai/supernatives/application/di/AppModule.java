@@ -11,10 +11,9 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Singleton;
 
 import cyrilpillai.supernatives.BuildConfig;
-import cyrilpillai.supernatives.heroes_list.entity.MyObjectBox;
-import cyrilpillai.supernatives.utils.network.ApiService;
-import cyrilpillai.supernatives.utils.network.ServiceInterceptor;
+import cyrilpillai.supernatives.MyObjectBox;
 import cyrilpillai.supernatives.utils.Constants;
+import cyrilpillai.supernatives.utils.network.ApiService;
 import dagger.Module;
 import dagger.Provides;
 import io.objectbox.BoxStore;
@@ -55,13 +54,12 @@ public class AppModule {
 
     @Provides
     @Singleton
-    OkHttpClient providesOkHttpClient(Cache cache, ServiceInterceptor serviceInterceptor) {
+    OkHttpClient providesOkHttpClient(Cache cache) {
         OkHttpClient.Builder client = new OkHttpClient.Builder()
                 .cache(cache)
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS);
-        //.addInterceptor(serviceInterceptor);
 
         client.addNetworkInterceptor(new StethoInterceptor());
 
@@ -85,12 +83,6 @@ public class AppModule {
     @Singleton
     GsonConverterFactory providesGsonConverterFactory() {
         return GsonConverterFactory.create();
-    }
-
-    @Provides
-    @Singleton
-    ServiceInterceptor providesServiceInterceptor() {
-        return new ServiceInterceptor();
     }
 
     @Provides

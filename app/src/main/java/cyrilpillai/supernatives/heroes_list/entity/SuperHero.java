@@ -8,11 +8,14 @@ import io.objectbox.annotation.Id;
 /**
  * Created by cyrilpillai on 11-11-2017.
  */
+
 @Entity
 public class SuperHero {
+
     @Id(assignable = true)
     @SerializedName("id")
     private long id;
+
     @SerializedName("character_name")
     private String name;
 
@@ -34,7 +37,7 @@ public class SuperHero {
 
     @Override
     public String toString() {
-        return "SuperHero{" +
+        return "SuperHeroDetails{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

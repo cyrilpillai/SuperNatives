@@ -1,4 +1,4 @@
-package cyrilpillai.supernatives.heroes_list;
+package cyrilpillai.supernatives.heroes_list.model;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import cyrilpillai.supernatives.heroes_list.contract.HeroesListContract;
 import cyrilpillai.supernatives.heroes_list.entity.SuperHero;
 import cyrilpillai.supernatives.utils.Constants;
 import cyrilpillai.supernatives.utils.network.ApiService;
@@ -69,7 +70,7 @@ public class HeroesListModel implements HeroesListContract.Model {
     }
 
     @Override
-    public SuperHero getHeroAtPosition(int position) {
+    public SuperHero getSuperHeroAtPosition(int position) {
         List<SuperHero> superHeroes = superHeroBox.getAll();
         return superHeroes != null ? superHeroes.get(position) : null;
     }

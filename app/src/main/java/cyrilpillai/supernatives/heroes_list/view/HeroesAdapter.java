@@ -1,4 +1,4 @@
-package cyrilpillai.supernatives.heroes_list;
+package cyrilpillai.supernatives.heroes_list.view;
 
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;

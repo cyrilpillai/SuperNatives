@@ -1,4 +1,4 @@
-package cyrilpillai.supernatives.heroes_list;
+package cyrilpillai.supernatives.heroes_list.contract;
 
 import java.util.List;
 
@@ -10,13 +10,13 @@ import cyrilpillai.supernatives.utils.callbacks.DataCallback;
  */
 
 public class HeroesListContract {
-    interface Model {
+    public interface Model {
         void fetchSuperHeroes(DataCallback<List<SuperHero>, Throwable> dataCallback);
 
-        SuperHero getHeroAtPosition(int position);
+        SuperHero getSuperHeroAtPosition(int position);
     }
 
-    interface View {
+    public interface View {
         void setSuperHeroes(List<SuperHero> superHeroes);
 
         void superHeroesView(boolean show);
@@ -25,10 +25,10 @@ public class HeroesListContract {
 
         void errorView(boolean show);
 
-        void showDetailsView(long id);
+        void showDetailsView(long characterId);
     }
 
-    interface Presenter {
+    public interface Presenter {
         void getSuperHeroes();
 
         void onSuperHeroClicked(int position);

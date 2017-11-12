@@ -1,4 +1,4 @@
-package cyrilpillai.supernatives.heroes_list;
+package cyrilpillai.supernatives.heroes_list.view;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
@@ -6,10 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -17,6 +14,8 @@ import javax.inject.Inject;
 
 import cyrilpillai.supernatives.R;
 import cyrilpillai.supernatives.databinding.ActivityHeroesListBinding;
+import cyrilpillai.supernatives.hero_details.view.HeroDetailsActivity;
+import cyrilpillai.supernatives.heroes_list.contract.HeroesListContract;
 import cyrilpillai.supernatives.heroes_list.entity.SuperHero;
 import dagger.android.AndroidInjection;
 
@@ -25,8 +24,6 @@ import dagger.android.AndroidInjection;
  */
 
 public class HeroesListActivity extends AppCompatActivity implements HeroesListContract.View {
-
-    public static final String TAG = "HeroesListActivity";
 
     private ActivityHeroesListBinding binding;
     private Context context;
@@ -82,7 +79,7 @@ public class HeroesListActivity extends AppCompatActivity implements HeroesListC
     }
 
     @Override
-    public void showDetailsView(long id) {
-        Toast.makeText(context, id + " clicked", Toast.LENGTH_SHORT).show();
+    public void showDetailsView(long characterId) {
+        HeroDetailsActivity.start(context, characterId);
     }
 }
