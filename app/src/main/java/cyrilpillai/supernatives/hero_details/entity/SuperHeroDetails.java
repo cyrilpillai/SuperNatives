@@ -2,11 +2,9 @@ package cyrilpillai.supernatives.hero_details.entity;
 
 import com.google.gson.annotations.SerializedName;
 
-import io.objectbox.annotation.Backlink;
 import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
 import io.objectbox.annotation.Transient;
-import io.objectbox.relation.ToMany;
 import io.objectbox.relation.ToOne;
 
 /**

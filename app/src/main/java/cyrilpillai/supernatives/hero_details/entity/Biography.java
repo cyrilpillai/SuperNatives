@@ -8,7 +8,6 @@ import cyrilpillai.supernatives.utils.DatabaseHelper;
 import io.objectbox.annotation.Convert;
 import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
-import io.objectbox.relation.ToOne;
 
 /**
  * Created by cyrilpillai on 12-11-2017.

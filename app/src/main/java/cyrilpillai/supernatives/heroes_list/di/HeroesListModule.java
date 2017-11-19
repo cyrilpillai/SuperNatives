@@ -1,8 +1,8 @@
 package cyrilpillai.supernatives.heroes_list.di;
 
+import cyrilpillai.supernatives.heroes_list.contract.HeroesListContract;
 import cyrilpillai.supernatives.heroes_list.model.HeroesListModel;
 import cyrilpillai.supernatives.heroes_list.presenter.HeroesListPresenter;
-import cyrilpillai.supernatives.heroes_list.contract.HeroesListContract;
 import cyrilpillai.supernatives.heroes_list.repo.HeroesRepo;
 import cyrilpillai.supernatives.heroes_list.view.HeroesAdapter;
 import cyrilpillai.supernatives.heroes_list.view.HeroesListActivity;

@@ -1,10 +1,10 @@
 package cyrilpillai.supernatives.application.di;
 
 
-import cyrilpillai.supernatives.hero_details.view.HeroDetailsActivity;
 import cyrilpillai.supernatives.hero_details.di.HeroDetailsModule;
-import cyrilpillai.supernatives.heroes_list.view.HeroesListActivity;
+import cyrilpillai.supernatives.hero_details.view.HeroDetailsActivity;
 import cyrilpillai.supernatives.heroes_list.di.HeroesListModule;
+import cyrilpillai.supernatives.heroes_list.view.HeroesListActivity;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 

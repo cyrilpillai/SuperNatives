@@ -3,7 +3,6 @@ package cyrilpillai.supernatives.utils.network;
 
 import java.util.List;
 
-import cyrilpillai.supernatives.BuildConfig;
 import cyrilpillai.supernatives.hero_details.entity.SuperHeroDetails;
 import cyrilpillai.supernatives.heroes_list.entity.SuperHero;
 import retrofit2.Call;

@@ -1,10 +1,10 @@
 package cyrilpillai.supernatives.hero_details.di;
 
-import cyrilpillai.supernatives.hero_details.repo.HeroDetailsRepo;
-import cyrilpillai.supernatives.hero_details.view.HeroDetailsActivity;
 import cyrilpillai.supernatives.hero_details.contract.HeroDetailsContract;
 import cyrilpillai.supernatives.hero_details.model.HeroDetailsModel;
 import cyrilpillai.supernatives.hero_details.presenter.HeroDetailsPresenter;
+import cyrilpillai.supernatives.hero_details.repo.HeroDetailsRepo;
+import cyrilpillai.supernatives.hero_details.view.HeroDetailsActivity;
 import cyrilpillai.supernatives.utils.network.ApiService;
 import dagger.Module;
 import dagger.Provides;

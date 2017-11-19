@@ -8,11 +8,11 @@ import java.util.List;
 import javax.inject.Inject;
 
 import cyrilpillai.supernatives.heroes_list.contract.HeroesListContract;
-import cyrilpillai.supernatives.heroes_list.repo.HeroesRepo;
 import cyrilpillai.supernatives.heroes_list.entity.SuperHero;
+import cyrilpillai.supernatives.heroes_list.repo.HeroesRepo;
 import cyrilpillai.supernatives.utils.Constants;
-import cyrilpillai.supernatives.utils.network.ApiService;
 import cyrilpillai.supernatives.utils.callbacks.DataCallback;
+import cyrilpillai.supernatives.utils.network.ApiService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

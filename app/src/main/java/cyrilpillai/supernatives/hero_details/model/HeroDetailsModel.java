@@ -6,14 +6,10 @@ import android.util.Log;
 import javax.inject.Inject;
 
 import cyrilpillai.supernatives.hero_details.contract.HeroDetailsContract;
-import cyrilpillai.supernatives.hero_details.entity.Appearance;
 import cyrilpillai.supernatives.hero_details.entity.SuperHeroDetails;
-import cyrilpillai.supernatives.hero_details.entity.SuperHeroDetails_;
 import cyrilpillai.supernatives.hero_details.repo.HeroDetailsRepo;
 import cyrilpillai.supernatives.utils.callbacks.DataCallback;
 import cyrilpillai.supernatives.utils.network.ApiService;
-import io.objectbox.Box;
-import io.objectbox.BoxStore;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -53,11 +49,8 @@ public class HeroDetailsModel implements HeroDetailsContract.Model {
                     SuperHeroDetails details = response.body();
                     if (response.isSuccessful() &&
                             details != null) {
-                        Log.d("Heroes", "onResponse: " + details.toString());
-                        long id = heroDetailsRepo.save(details);
-                        SuperHeroDetails s = heroDetailsRepo.fetchById(id);
-                        Log.d("Heroes", "After saving: " + s.toString());
-                        dataCallback.onSuccess(s);
+                        heroDetailsRepo.save(details);
+                        dataCallback.onSuccess(details);
                     } else {
                         dataCallback.onError(new Throwable("Error"));
 
