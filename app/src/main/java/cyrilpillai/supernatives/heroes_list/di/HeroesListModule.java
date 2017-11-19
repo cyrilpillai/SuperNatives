@@ -3,6 +3,7 @@ package cyrilpillai.supernatives.heroes_list.di;
 import cyrilpillai.supernatives.heroes_list.model.HeroesListModel;
 import cyrilpillai.supernatives.heroes_list.presenter.HeroesListPresenter;
 import cyrilpillai.supernatives.heroes_list.contract.HeroesListContract;
+import cyrilpillai.supernatives.heroes_list.repo.HeroesRepo;
 import cyrilpillai.supernatives.heroes_list.view.HeroesAdapter;
 import cyrilpillai.supernatives.heroes_list.view.HeroesListActivity;
 import cyrilpillai.supernatives.utils.network.ApiService;
@@ -18,8 +19,8 @@ import io.objectbox.BoxStore;
 public class HeroesListModule {
 
     @Provides
-    HeroesListContract.Model providesHeroesListModel(ApiService apiService, BoxStore boxStore) {
-        return new HeroesListModel(apiService, boxStore);
+    HeroesListContract.Model providesHeroesListModel(ApiService apiService, HeroesRepo heroesRepo) {
+        return new HeroesListModel(apiService, heroesRepo);
     }
 
     @Provides
@@ -31,6 +32,11 @@ public class HeroesListModule {
     HeroesListContract.Presenter providesHeroesListPresenter(HeroesListContract.View view,
                                                              HeroesListContract.Model model) {
         return new HeroesListPresenter(view, model);
+    }
+
+    @Provides
+    HeroesRepo providesHeroesRepo(BoxStore boxStore) {
+        return new HeroesRepo(boxStore);
     }
 
     @Provides

@@ -6,8 +6,10 @@ import android.util.Log;
 import javax.inject.Inject;
 
 import cyrilpillai.supernatives.hero_details.contract.HeroDetailsContract;
+import cyrilpillai.supernatives.hero_details.entity.Appearance;
 import cyrilpillai.supernatives.hero_details.entity.SuperHeroDetails;
 import cyrilpillai.supernatives.hero_details.entity.SuperHeroDetails_;
+import cyrilpillai.supernatives.hero_details.repo.HeroDetailsRepo;
 import cyrilpillai.supernatives.utils.callbacks.DataCallback;
 import cyrilpillai.supernatives.utils.network.ApiService;
 import io.objectbox.Box;
@@ -23,20 +25,19 @@ import retrofit2.Response;
 public class HeroDetailsModel implements HeroDetailsContract.Model {
 
     private ApiService apiService;
-    private Box<SuperHeroDetails> superHeroDetailsBox;
+    private HeroDetailsRepo heroDetailsRepo;
 
     @Inject
-    public HeroDetailsModel(ApiService apiService, BoxStore boxStore) {
+    public HeroDetailsModel(ApiService apiService, HeroDetailsRepo heroDetailsRepo) {
         this.apiService = apiService;
-        superHeroDetailsBox = boxStore.boxFor(SuperHeroDetails.class);
+        this.heroDetailsRepo = heroDetailsRepo;
     }
 
 
     @Override
     public void fetchSuperHeroDetails(long characterId,
                                       DataCallback<SuperHeroDetails, Throwable> dataCallback) {
-        SuperHeroDetails superHeroDetails = superHeroDetailsBox.query()
-                .equal(SuperHeroDetails_.id, characterId).build().findFirst();
+        SuperHeroDetails superHeroDetails = heroDetailsRepo.fetchById(characterId);
         if (superHeroDetails != null) {
             Log.d("Heroes", "fetchSuperHeroDetails: from Local Cache");
             dataCallback.onSuccess(superHeroDetails);
@@ -52,8 +53,11 @@ public class HeroDetailsModel implements HeroDetailsContract.Model {
                     SuperHeroDetails details = response.body();
                     if (response.isSuccessful() &&
                             details != null) {
-                        superHeroDetailsBox.put(details);
-                        dataCallback.onSuccess(details);
+                        Log.d("Heroes", "onResponse: " + details.toString());
+                        long id = heroDetailsRepo.save(details);
+                        SuperHeroDetails s = heroDetailsRepo.fetchById(id);
+                        Log.d("Heroes", "After saving: " + s.toString());
+                        dataCallback.onSuccess(s);
                     } else {
                         dataCallback.onError(new Throwable("Error"));
 

@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 
 import javax.inject.Inject;
@@ -44,6 +45,10 @@ public class HeroDetailsActivity extends AppCompatActivity implements HeroDetail
         binding = DataBindingUtil.setContentView(this, R.layout.activity_hero_details);
         context = this;
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         characterId = getIntent().getLongExtra(Constants.SUPERHERO_ID, -1);
 
         binding.rvHeroDetails.setLayoutManager(new LinearLayoutManager(context,
@@ -53,6 +58,17 @@ public class HeroDetailsActivity extends AppCompatActivity implements HeroDetail
         binding.btnTryAgain.setOnClickListener(v -> presenter.getSuperHeroDetails(characterId));
 
         binding.btnTryAgain.performClick();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

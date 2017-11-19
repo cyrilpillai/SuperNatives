@@ -4,11 +4,21 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import cyrilpillai.supernatives.utils.DatabaseHelper;
+import io.objectbox.annotation.Convert;
+import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
+import io.objectbox.relation.ToOne;
+
 /**
  * Created by cyrilpillai on 12-11-2017.
  */
 
+@Entity
 public class Biography {
+
+    @Id
+    private long id;
 
     @SerializedName("full-name")
     private String fullName;
@@ -17,6 +27,7 @@ public class Biography {
     private String alterEgos;
 
     @SerializedName("aliases")
+    @Convert(converter = DatabaseHelper.StringListConverter.class, dbType = String.class)
     private List<String> aliases;
 
     @SerializedName("place-of-birth")
@@ -31,15 +42,12 @@ public class Biography {
     @SerializedName("alignment")
     private String alignment;
 
-    public Biography(String fullName, String alterEgos, List<String> aliases, String placeOfBirth,
-                     String firstAppearance, String publisher, String alignment) {
-        this.fullName = fullName;
-        this.alterEgos = alterEgos;
-        this.aliases = aliases;
-        this.placeOfBirth = placeOfBirth;
-        this.firstAppearance = firstAppearance;
-        this.publisher = publisher;
-        this.alignment = alignment;
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getFullName() {
@@ -101,7 +109,8 @@ public class Biography {
     @Override
     public String toString() {
         return "Biography{" +
-                "fullName='" + fullName + '\'' +
+                "id=" + id +
+                ", fullName='" + fullName + '\'' +
                 ", alterEgos='" + alterEgos + '\'' +
                 ", aliases=" + aliases +
                 ", placeOfBirth='" + placeOfBirth + '\'' +

@@ -2,9 +2,12 @@ package cyrilpillai.supernatives.hero_details.entity;
 
 import com.google.gson.annotations.SerializedName;
 
+import io.objectbox.annotation.Backlink;
 import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
 import io.objectbox.annotation.Transient;
+import io.objectbox.relation.ToMany;
+import io.objectbox.relation.ToOne;
 
 /**
  * Created by cyrilpillai on 12-11-2017.
@@ -43,6 +46,18 @@ public class SuperHeroDetails {
     @Transient
     @SerializedName("image")
     private Image image;
+
+    private ToOne<PowerStats> powerStatsToOne;
+
+    private ToOne<Biography> biographyToOne;
+
+    private ToOne<Appearance> appearanceToOne;
+
+    private ToOne<Work> workToOne;
+
+    private ToOne<Connections> connectionsToOne;
+
+    private ToOne<Image> imageToOne;
 
     public long getId() {
         return id;
@@ -106,6 +121,54 @@ public class SuperHeroDetails {
 
     public void setImage(Image image) {
         this.image = image;
+    }
+
+    public ToOne<PowerStats> getPowerStatsToOne() {
+        return powerStatsToOne;
+    }
+
+    public void setPowerStatsToOne(ToOne<PowerStats> powerStatsToOne) {
+        this.powerStatsToOne = powerStatsToOne;
+    }
+
+    public ToOne<Biography> getBiographyToOne() {
+        return biographyToOne;
+    }
+
+    public void setBiographyToOne(ToOne<Biography> biographyToOne) {
+        this.biographyToOne = biographyToOne;
+    }
+
+    public ToOne<Appearance> getAppearanceToOne() {
+        return appearanceToOne;
+    }
+
+    public void setAppearanceToOne(ToOne<Appearance> appearanceToOne) {
+        this.appearanceToOne = appearanceToOne;
+    }
+
+    public ToOne<Work> getWorkToOne() {
+        return workToOne;
+    }
+
+    public void setWorkToOne(ToOne<Work> workToOne) {
+        this.workToOne = workToOne;
+    }
+
+    public ToOne<Connections> getConnectionsToOne() {
+        return connectionsToOne;
+    }
+
+    public void setConnectionsToOne(ToOne<Connections> connectionsToOne) {
+        this.connectionsToOne = connectionsToOne;
+    }
+
+    public ToOne<Image> getImageToOne() {
+        return imageToOne;
+    }
+
+    public void setImageToOne(ToOne<Image> imageToOne) {
+        this.imageToOne = imageToOne;
     }
 
     @Override

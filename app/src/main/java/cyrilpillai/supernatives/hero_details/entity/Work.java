@@ -2,11 +2,19 @@ package cyrilpillai.supernatives.hero_details.entity;
 
 import com.google.gson.annotations.SerializedName;
 
+import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
+import io.objectbox.relation.ToOne;
+
 /**
  * Created by cyrilpillai on 12-11-2017.
  */
 
+@Entity
 public class Work {
+
+    @Id
+    private long id;
 
     @SerializedName("occupation")
     private String occupation;
@@ -14,9 +22,12 @@ public class Work {
     @SerializedName("base")
     private String base;
 
-    public Work(String occupation, String base) {
-        this.occupation = occupation;
-        this.base = base;
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getOccupation() {
@@ -31,15 +42,16 @@ public class Work {
         return base;
     }
 
+    public void setBase(String base) {
+        this.base = base;
+    }
+
     @Override
     public String toString() {
         return "Work{" +
-                "occupation='" + occupation + '\'' +
+                "id=" + id +
+                ", occupation='" + occupation + '\'' +
                 ", base='" + base + '\'' +
                 '}';
-    }
-
-    public void setBase(String base) {
-        this.base = base;
     }
 }

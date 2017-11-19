@@ -1,5 +1,6 @@
 package cyrilpillai.supernatives.hero_details.di;
 
+import cyrilpillai.supernatives.hero_details.repo.HeroDetailsRepo;
 import cyrilpillai.supernatives.hero_details.view.HeroDetailsActivity;
 import cyrilpillai.supernatives.hero_details.contract.HeroDetailsContract;
 import cyrilpillai.supernatives.hero_details.model.HeroDetailsModel;
@@ -17,8 +18,9 @@ import io.objectbox.BoxStore;
 public class HeroDetailsModule {
 
     @Provides
-    HeroDetailsContract.Model providesHeroDetailsModel(ApiService apiService, BoxStore boxStore) {
-        return new HeroDetailsModel(apiService, boxStore);
+    HeroDetailsContract.Model providesHeroDetailsModel(ApiService apiService,
+                                                       HeroDetailsRepo heroDetailsRepo) {
+        return new HeroDetailsModel(apiService, heroDetailsRepo);
     }
 
     @Provides
@@ -30,5 +32,10 @@ public class HeroDetailsModule {
     HeroDetailsContract.Presenter providesHeroDetailsPresenter(HeroDetailsContract.View view,
                                                                HeroDetailsContract.Model model) {
         return new HeroDetailsPresenter(view, model);
+    }
+
+    @Provides
+    HeroDetailsRepo providesHeroDetailsRepo(BoxStore boxStore) {
+        return new HeroDetailsRepo(boxStore);
     }
 }

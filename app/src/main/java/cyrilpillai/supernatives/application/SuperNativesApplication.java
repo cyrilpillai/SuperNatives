@@ -5,9 +5,9 @@ import android.app.Activity;
 import android.app.Application;
 
 import com.facebook.stetho.Stetho;
-
 import javax.inject.Inject;
 
+import cyrilpillai.supernatives.BuildConfig;
 import cyrilpillai.supernatives.application.di.DaggerAppComponent;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
@@ -31,7 +31,9 @@ public class SuperNativesApplication extends Application implements HasActivityI
                 .build()
                 .inject(this);
 
-        Stetho.initializeWithDefaults(this);
+        if (BuildConfig.DEBUG) {
+            Stetho.initializeWithDefaults(this);
+        }
     }
 
     @Override

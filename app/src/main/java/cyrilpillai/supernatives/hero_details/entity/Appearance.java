@@ -4,11 +4,20 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import cyrilpillai.supernatives.utils.DatabaseHelper;
+import io.objectbox.annotation.Convert;
+import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
+
 /**
  * Created by cyrilpillai on 12-11-2017.
  */
 
+@Entity
 public class Appearance {
+
+    @Id
+    private long id;
 
     @SerializedName("gender")
     private String gender;
@@ -17,9 +26,11 @@ public class Appearance {
     private String race;
 
     @SerializedName("height")
+    @Convert(converter = DatabaseHelper.StringListConverter.class, dbType = String.class)
     private List<String> height;
 
     @SerializedName("weight")
+    @Convert(converter = DatabaseHelper.StringListConverter.class, dbType = String.class)
     private List<String> weight;
 
     @SerializedName("eye-color")
@@ -28,14 +39,12 @@ public class Appearance {
     @SerializedName("hair-color")
     private String hairColor;
 
-    public Appearance(String gender, String race, List<String> height,
-                      List<String> weight, String eyeColor, String hairColor) {
-        this.gender = gender;
-        this.race = race;
-        this.height = height;
-        this.weight = weight;
-        this.eyeColor = eyeColor;
-        this.hairColor = hairColor;
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getGender() {
@@ -89,7 +98,8 @@ public class Appearance {
     @Override
     public String toString() {
         return "Appearance{" +
-                "gender='" + gender + '\'' +
+                "id=" + id +
+                ", gender='" + gender + '\'' +
                 ", race='" + race + '\'' +
                 ", height=" + height +
                 ", weight=" + weight +

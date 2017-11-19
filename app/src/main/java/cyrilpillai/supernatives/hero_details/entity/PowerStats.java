@@ -2,11 +2,20 @@ package cyrilpillai.supernatives.hero_details.entity;
 
 import com.google.gson.annotations.SerializedName;
 
+import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
+import io.objectbox.relation.ToOne;
+
 /**
  * Created by cyrilpillai on 12-11-2017.
  */
 
+@Entity
 public class PowerStats {
+
+    @Id
+    private long id;
+
     @SerializedName("intelligence")
     private String intelligence;
 
@@ -25,13 +34,12 @@ public class PowerStats {
     @SerializedName("combat")
     private String combat;
 
-    public PowerStats(String intelligence, String strength, String speed, String durability, String power, String combat) {
-        this.intelligence = intelligence;
-        this.strength = strength;
-        this.speed = speed;
-        this.durability = durability;
-        this.power = power;
-        this.combat = combat;
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getIntelligence() {
@@ -85,7 +93,8 @@ public class PowerStats {
     @Override
     public String toString() {
         return "PowerStats{" +
-                "intelligence='" + intelligence + '\'' +
+                "id=" + id +
+                ", intelligence='" + intelligence + '\'' +
                 ", strength='" + strength + '\'' +
                 ", speed='" + speed + '\'' +
                 ", durability='" + durability + '\'' +

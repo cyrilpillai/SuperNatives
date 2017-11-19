@@ -2,11 +2,19 @@ package cyrilpillai.supernatives.hero_details.entity;
 
 import com.google.gson.annotations.SerializedName;
 
+import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
+import io.objectbox.relation.ToOne;
+
 /**
  * Created by cyrilpillai on 12-11-2017.
  */
 
+@Entity
 public class Connections {
+
+    @Id
+    private long id;
 
     @SerializedName("group-affiliation")
     private String groupAffiliation;
@@ -14,9 +22,12 @@ public class Connections {
     @SerializedName("relatives")
     private String relatives;
 
-    public Connections(String groupAffiliation, String relatives) {
-        this.groupAffiliation = groupAffiliation;
-        this.relatives = relatives;
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getGroupAffiliation() {
@@ -38,7 +49,8 @@ public class Connections {
     @Override
     public String toString() {
         return "Connections{" +
-                "groupAffiliation='" + groupAffiliation + '\'' +
+                "id=" + id +
+                ", groupAffiliation='" + groupAffiliation + '\'' +
                 ", relatives='" + relatives + '\'' +
                 '}';
     }
