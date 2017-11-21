@@ -1,9 +1,15 @@
 package cyrilpillai.supernatives.hero_details.presenter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
+import cyrilpillai.supernatives.R;
 import cyrilpillai.supernatives.hero_details.contract.HeroDetailsContract;
+import cyrilpillai.supernatives.hero_details.entity.PowerStats;
 import cyrilpillai.supernatives.hero_details.entity.SuperHeroDetails;
+import cyrilpillai.supernatives.hero_details.view.adapter.PowerStatDelegate;
 import cyrilpillai.supernatives.utils.callbacks.DataCallback;
 
 /**
@@ -29,7 +35,11 @@ public class HeroDetailsPresenter implements HeroDetailsContract.Presenter {
         model.fetchSuperHeroDetails(characterId, new DataCallback<SuperHeroDetails, Throwable>() {
             @Override
             public void onSuccess(SuperHeroDetails response) {
-                view.setSuperHeroDetailsView(response);
+                List<Object> detailsView = new ArrayList<>();
+
+                detailsView.addAll(formatPowerStats(response.getPowerStats()));
+
+                view.setSuperHeroDetailsView(detailsView);
                 view.superHeroDetailsView(true);
                 view.errorView(false);
                 view.loadingView(false);
@@ -42,5 +52,22 @@ public class HeroDetailsPresenter implements HeroDetailsContract.Presenter {
                 view.loadingView(false);
             }
         });
+    }
+
+    private List<PowerStatDelegate.PowerStat> formatPowerStats(PowerStats powerStats) {
+        List<PowerStatDelegate.PowerStat> powerStatList = new ArrayList<>();
+        powerStatList.add(new PowerStatDelegate.PowerStat("Intelligence",
+                Integer.parseInt(powerStats.getIntelligence()), R.color.cyan));
+        powerStatList.add(new PowerStatDelegate.PowerStat("Strength",
+                Integer.parseInt(powerStats.getStrength()), R.color.red));
+        powerStatList.add(new PowerStatDelegate.PowerStat("Speed",
+                Integer.parseInt(powerStats.getSpeed()), R.color.teal));
+        powerStatList.add(new PowerStatDelegate.PowerStat("Durability",
+                Integer.parseInt(powerStats.getDurability()), R.color.brown));
+        powerStatList.add(new PowerStatDelegate.PowerStat("Power",
+                Integer.parseInt(powerStats.getPower()), R.color.blue_grey));
+        powerStatList.add(new PowerStatDelegate.PowerStat("Combat",
+                Integer.parseInt(powerStats.getCombat()), R.color.green));
+        return powerStatList;
     }
 }

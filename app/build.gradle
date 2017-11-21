@@ -43,6 +43,7 @@ dependencies {
     implementation deps.facebook.stetho
     implementation deps.facebook.networkInterceptor
     implementation deps.others.fastScroll
+    implementation deps.others.adapterDelegates
     debugImplementation deps.greenrobot.objectBoxDebug
     releaseImplementation deps.greenrobot.objectBoxRelease
 

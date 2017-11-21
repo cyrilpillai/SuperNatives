@@ -10,12 +10,15 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import cyrilpillai.supernatives.R;
 import cyrilpillai.supernatives.databinding.ActivityHeroDetailsBinding;
 import cyrilpillai.supernatives.hero_details.contract.HeroDetailsContract;
 import cyrilpillai.supernatives.hero_details.entity.SuperHeroDetails;
+import cyrilpillai.supernatives.hero_details.view.adapter.HeroDetailsAdapter;
 import cyrilpillai.supernatives.utils.Constants;
 import dagger.android.AndroidInjection;
 
@@ -31,6 +34,9 @@ public class HeroDetailsActivity extends AppCompatActivity implements HeroDetail
 
     @Inject
     HeroDetailsContract.Presenter presenter;
+
+    @Inject
+    HeroDetailsAdapter adapter;
 
     public static void start(Context context, long characterId) {
         Intent intent = new Intent(context, HeroDetailsActivity.class);
@@ -53,7 +59,7 @@ public class HeroDetailsActivity extends AppCompatActivity implements HeroDetail
 
         binding.rvHeroDetails.setLayoutManager(new LinearLayoutManager(context,
                 LinearLayoutManager.VERTICAL, false));
-        //binding.rvHeroDetails.setAdapter(heroesAdapter);
+        binding.rvHeroDetails.setAdapter(adapter);
 
         binding.btnTryAgain.setOnClickListener(v -> presenter.getSuperHeroDetails(characterId));
 
@@ -72,8 +78,8 @@ public class HeroDetailsActivity extends AppCompatActivity implements HeroDetail
     }
 
     @Override
-    public void setSuperHeroDetailsView(SuperHeroDetails superHeroDetails) {
-        Log.d("Heroes", "setSuperHeroDetailsView: " + superHeroDetails.toString());
+    public void setSuperHeroDetailsView(List<Object> detailsView) {
+        adapter.setData(detailsView);
     }
 
     @Override

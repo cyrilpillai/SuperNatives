@@ -48,6 +48,7 @@ buildscript {
             ],
             others    : [
                     'fastScroll': "com.futuremind.recyclerfastscroll:fastscroll:0.2.5",
+                    'adapterDelegates': "com.hannesdorfmann:adapterdelegates3:3.0.1",
             ],
             test      : [
                     'junit'       : "junit:junit:4.12",

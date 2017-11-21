@@ -1,5 +1,7 @@
 package cyrilpillai.supernatives.hero_details.contract;
 
+import java.util.List;
+
 import cyrilpillai.supernatives.hero_details.entity.SuperHeroDetails;
 import cyrilpillai.supernatives.utils.callbacks.DataCallback;
 
@@ -13,7 +15,7 @@ public class HeroDetailsContract {
     }
 
     public interface View {
-        void setSuperHeroDetailsView(SuperHeroDetails superHeroDetails);
+        void setSuperHeroDetailsView(List<Object> detailsView);
 
         void loadingView(boolean isLoading);
 
