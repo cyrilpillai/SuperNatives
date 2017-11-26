@@ -17,7 +17,7 @@
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Iron Man" />
+            tools:text="Wolverine" />
     </LinearLayout>
 
 </layout>

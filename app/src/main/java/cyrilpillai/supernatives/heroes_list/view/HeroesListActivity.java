@@ -79,7 +79,7 @@ public class HeroesListActivity extends AppCompatActivity implements HeroesListC
     }
 
     @Override
-    public void showDetailsView(long characterId) {
-        HeroDetailsActivity.start(context, characterId);
+    public void showDetailsView(SuperHero superHero) {
+        HeroDetailsActivity.start(context, superHero);
     }
 }

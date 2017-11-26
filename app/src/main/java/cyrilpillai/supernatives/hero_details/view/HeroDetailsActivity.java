@@ -19,6 +19,7 @@ import cyrilpillai.supernatives.databinding.ActivityHeroDetailsBinding;
 import cyrilpillai.supernatives.hero_details.contract.HeroDetailsContract;
 import cyrilpillai.supernatives.hero_details.entity.SuperHeroDetails;
 import cyrilpillai.supernatives.hero_details.view.adapter.HeroDetailsAdapter;
+import cyrilpillai.supernatives.heroes_list.entity.SuperHero;
 import cyrilpillai.supernatives.utils.Constants;
 import dagger.android.AndroidInjection;
 
@@ -30,7 +31,6 @@ public class HeroDetailsActivity extends AppCompatActivity implements HeroDetail
 
     private ActivityHeroDetailsBinding binding;
     private Context context;
-    private long characterId;
 
     @Inject
     HeroDetailsContract.Presenter presenter;
@@ -38,9 +38,9 @@ public class HeroDetailsActivity extends AppCompatActivity implements HeroDetail
     @Inject
     HeroDetailsAdapter adapter;
 
-    public static void start(Context context, long characterId) {
+    public static void start(Context context, SuperHero superHero) {
         Intent intent = new Intent(context, HeroDetailsActivity.class);
-        intent.putExtra(Constants.SUPERHERO_ID, characterId);
+        intent.putExtra(Constants.SUPERHERO, superHero);
         context.startActivity(intent);
     }
 
@@ -51,19 +51,27 @@ public class HeroDetailsActivity extends AppCompatActivity implements HeroDetail
         binding = DataBindingUtil.setContentView(this, R.layout.activity_hero_details);
         context = this;
 
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        SuperHero superHero = getIntent().getParcelableExtra(Constants.SUPERHERO);
+
+        if (superHero == null) {
+            finish();
+        } else {
+
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                getSupportActionBar().setTitle(superHero.getName());
+            }
+
+
+            binding.rvHeroDetails.setLayoutManager(new LinearLayoutManager(context,
+                    LinearLayoutManager.VERTICAL, false));
+            binding.rvHeroDetails.setAdapter(adapter);
+
+            binding.btnTryAgain.setOnClickListener(v ->
+                    presenter.getSuperHeroDetails(superHero.getId()));
+
+            binding.btnTryAgain.performClick();
         }
-
-        characterId = getIntent().getLongExtra(Constants.SUPERHERO_ID, -1);
-
-        binding.rvHeroDetails.setLayoutManager(new LinearLayoutManager(context,
-                LinearLayoutManager.VERTICAL, false));
-        binding.rvHeroDetails.setAdapter(adapter);
-
-        binding.btnTryAgain.setOnClickListener(v -> presenter.getSuperHeroDetails(characterId));
-
-        binding.btnTryAgain.performClick();
     }
 
     @Override

@@ -25,7 +25,7 @@ public class HeroesListContract {
 
         void errorView(boolean show);
 
-        void showDetailsView(long characterId);
+        void showDetailsView(SuperHero superHero);
     }
 
     public interface Presenter {

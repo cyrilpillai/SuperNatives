@@ -9,21 +9,22 @@
         android:orientation="vertical"
         android:padding="@dimen/details_padding">
 
-        <ProgressBar
-            android:id="@+id/pb_stat"
-            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:progress="33" />
+        <View
+            android:id="@+id/view_strip"
+            android:layout_width="40dp"
+            android:layout_height="4dp"
+            tools:background="@color/accent" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/tv_stat_title"
-            style="@style/Base.TextAppearance.AppCompat.Caption"
+            android:id="@+id/tv_title"
+            style="@style/Base.TextAppearance.Widget.AppCompat.Toolbar.Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="right|end"
-            android:textColor="@color/accent"
-            tools:text="Intelligence" />
-    </LinearLayout>
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            tools:text="Appearance"
+            tools:textColor="@color/accent" />
 
+
+    </LinearLayout>
 </layout>

@@ -26,8 +26,7 @@ public class PowerStatDelegate extends AbsListItemAdapterDelegate<PowerStatDeleg
 
     private Context context;
 
-    public PowerStatDelegate(Context context) {
-        this.context = context;
+    public PowerStatDelegate() {
     }
 
     @Override
@@ -38,8 +37,9 @@ public class PowerStatDelegate extends AbsListItemAdapterDelegate<PowerStatDeleg
     @NonNull
     @Override
     public PowerStatViewHolder onCreateViewHolder(@NonNull ViewGroup parent) {
+        context = parent.getContext();
         RvPowerStatProgressBinding binding = DataBindingUtil.inflate(
-                LayoutInflater.from(parent.getContext()),
+                LayoutInflater.from(context),
                 R.layout.rv_power_stat_progress, parent, false);
         return new PowerStatViewHolder(binding);
     }

@@ -50,7 +50,7 @@ public class HeroesListPresenter implements HeroesListContract.Presenter {
     public void onSuperHeroClicked(int position) {
         SuperHero superHero = model.getSuperHeroAtPosition(position);
         if (superHero != null) {
-            view.showDetailsView(superHero.getId());
+            view.showDetailsView(superHero);
         }
     }
 }
