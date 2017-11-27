@@ -151,17 +151,25 @@ public class HeroDetailsPresenter implements HeroDetailsContract.Presenter {
     private List<PowerStatDelegate.PowerStat> formatPowerStats(PowerStats powerStats) {
         List<PowerStatDelegate.PowerStat> powerStatList = new ArrayList<>();
         powerStatList.add(new PowerStatDelegate.PowerStat("Intelligence",
-                Integer.parseInt(powerStats.getIntelligence()), R.color.cyan));
+                getInteger(powerStats.getIntelligence()), R.color.cyan));
         powerStatList.add(new PowerStatDelegate.PowerStat("Strength",
-                Integer.parseInt(powerStats.getStrength()), R.color.red));
+                getInteger(powerStats.getStrength()), R.color.red));
         powerStatList.add(new PowerStatDelegate.PowerStat("Speed",
-                Integer.parseInt(powerStats.getSpeed()), R.color.teal));
+                getInteger(powerStats.getSpeed()), R.color.teal));
         powerStatList.add(new PowerStatDelegate.PowerStat("Durability",
-                Integer.parseInt(powerStats.getDurability()), R.color.brown));
+                getInteger(powerStats.getDurability()), R.color.brown));
         powerStatList.add(new PowerStatDelegate.PowerStat("Power",
-                Integer.parseInt(powerStats.getPower()), R.color.blue_grey));
+                getInteger(powerStats.getPower()), R.color.blue_grey));
         powerStatList.add(new PowerStatDelegate.PowerStat("Combat",
-                Integer.parseInt(powerStats.getCombat()), R.color.green));
+                getInteger(powerStats.getCombat()), R.color.green));
         return powerStatList;
+    }
+
+    private int getInteger(String value) {
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return 0;
+        }
     }
 }
