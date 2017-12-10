@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".hero_details.view.HeroDetailsActivity"></activity>
+        <activity android:name=".hero_details.view.HeroDetailsActivity" />
     </application>
 
 </manifest>
