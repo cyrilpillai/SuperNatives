@@ -7,6 +7,13 @@ Super Natives is a sample app that showcases the use of MVP architecture to buil
 It is a very straightforward app wih two screens.
 <br>The first screen displays a list of superheroes & clicking on a superhero opens up a details screen that displays the details of that superhero.
 
+## How does it look?
+
+<p align="center">
+  <img src="/assets/list_screen.png" alt="Screenshots"  height="500" width="300" hspace="50"/>
+  <img src="/assets/details_screen.png" alt="Screenshots"  height="500" width="300"/>
+</p>
+
 ## Architecture
 This app follows the **Model-View-Presenter** architecture. If you are not familiar with this architectural pattern or aren't aware of its specifics then read [this](https://antonioleiva.com/mvp-android/) to quickly get an overview of MVP and how it fits in the Android world.
 
@@ -41,14 +48,19 @@ $ git clone https://github.com/cyrilpillai/SuperNatives.git
 ### Prerequisites
 Get an API key to access the `SuperHeroAPI` from [here](http://superheroapi.com/).
 
-
 ### Open and Run in Android Studio
 
 After cloning the repo:
 
 1. Open the project in Android Studio.
 
-2. Add the API key to `gradle.properties` as `SUPERHERO_API_KEY` to access it in the codebase while making sure you **DON'T REVEAL** it to the outside world. <br> Copy the snippet and change `"YOUR_API_KEY"` to the actual API key.
+2. Create `gradle.properties`, if it doesn't exist.
+
+<p align="center">
+  <img src="https://media.giphy.com/media/xUNd9X3bbwIuMyDxkY/giphy.gif" alt="Create gradle.properties"/>
+</p>
+
+3. Add the API key to `gradle.properties` as `SUPERHERO_API_KEY` to access it in the codebase while making sure you **DON'T REVEAL** it to the outside world. <br> Copy the snippet and change `"YOUR_API_KEY"` to the actual API key.
 ```
 # API Keys
 SUPERHERO_API_KEY = "YOUR_API_KEY"
@@ -63,6 +75,7 @@ SUPERHERO_API_KEY = "YOUR_API_KEY"
 * **Data Binding** - If you are still writing boilerplate code to bind views yourself, you need to checkout [DataBinding](https://developer.android.com/topic/libraries/data-binding/index.html) right now. Personally, I use it to just bind the views as I am against the idea of adding logic to `XMLs`, but DataBinding can do a lot more than just bind views.
 * **Starter Pattern** - This is pretty useful in non trivial apps. Read [this](https://hackernoon.com/object-oriented-tricks-4-starter-pattern-android-edition-1844e1a8522d) to know about it.
 * **Vector Drawables** - `STOP` using multiple versions of the same image to support the different density buckets. Enable [Vector Drawables](https://developer.android.com/guide/topics/graphics/vector-drawable-resources.html) in your app-level `build.gradle` and start using them to reduce the size of the `APK` and also your work of creating/managing versions of the same image.
+* **Screener** - Create wonderful screenshots with just a few clicks on your Android phone. Click [here](https://play.google.com/store/apps/details?id=de.toastcode.screener&hl=en) to download the app.
 
 
 ### Libraries Used
