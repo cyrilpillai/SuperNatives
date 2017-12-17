@@ -10,7 +10,7 @@ It is a very straightforward app wih two screens.
 ## How does it look?
 
 <p align="center">
-  <img src="/assets/list_screen.png" alt="Screenshots"  height="500" width="300" hspace="50"/>
+  <img src="/assets/list_screen.png" alt="Screenshots"  height="500" width="300"/>
   <img src="/assets/details_screen.png" alt="Screenshots"  height="500" width="300"/>
 </p>
 
