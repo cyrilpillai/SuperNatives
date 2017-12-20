@@ -4,7 +4,7 @@ Super Natives is a sample app that showcases the use of MVP architecture to buil
 
 
 ## What does it do?
-It is a very straightforward app wih two screens.
+It is a very straightforward app with two screens.
 <br>The first screen displays a list of superheroes & clicking on a superhero opens up a details screen that displays the details of that superhero.
 
 ## How does it look?
